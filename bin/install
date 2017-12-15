@@ -27,23 +27,10 @@ if [ -e Checkman.zip ]; then
   cd $TMP_DIR
 else
   cd $TMP_DIR
-  curl -L -sO https://raw.githubusercontent.com/cppforlife/checkman/master/bin/Checkman.zip
+  curl -L -sO https://raw.githubusercontent.com/amitree/checkman/master/bin/Checkman.zip
 fi
 
 unzip Checkman.zip
-
-# Add example checks for first time users
-if [ ! -d ~/Checkman ]; then
-  mkdir -p ~/Checkman
-  cat > ~/Checkman/example <<CHECKS
-google.com: site.check http://www.google.com
-
-#-
-#- jenkins-ci.org builds
-jenkins_main_trunk: jenkins_build.check https://ci.jenkins-ci.org jenkins_main_trunk
-jenkins_lts_branch: jenkins_build.check https://ci.jenkins-ci.org jenkins_lts_branch
-CHECKS
-fi
 
 sudoable "rm -rf $INSTALL_DIR/Checkman.app"
 sudoable "cp -R Checkman.app $INSTALL_DIR"

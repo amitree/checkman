@@ -17,7 +17,7 @@ class CircleCiJsonBuildStatus
   end
 
   def building?
-    %w{running queued not_running}.include?(@build_data['status'])
+    %w{running queued not_run not_running}.include?(@build_data['status'])
   end
 
   def build_url
